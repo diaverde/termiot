@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<title>Script Test Page</title>
+<style type='text/css'>
+body {
+    font-family: sans-serif;
+}
+</style>
+<script type='text/javascript'>
+function addScript()
+{
+    var str, div;
+
+    div = document.getElementById('target');
+    str = "Content added<" + "script type='text/javascript'>alert('hi there')<" + "/" + "script>";
+    alert("About to add:" + str);
+    div.innerHTML = str;
+    alert("Done adding script");
+}
+</script>
+</head>
+<body><div>
+<input type='button' value='Go' onclick='addScript();'>
+<div id='target'></div>
+</div></body>
+</html>

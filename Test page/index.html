@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">    
+
+    <title>Condiciones de humedad y temperatura</title>
+
+    <!-- Bootstrap core CSS -->    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />    
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="https://github.com/Haixing-Hu/bootstrap3-ie10-viewport-bug-workaround/blob/master/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="css/caruso.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR
+    ================================================== -->
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="img/logo_shield.png" alt="Logo Shield"></a>
+          <a class="navbar-brand" href="#"><img src="img/logo_lockers.png" alt="Logo Lockers"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#">Página Principal</a></li>
+            <li><a href="#">Mantenimiento</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- /NAVBAR -->
+
+    <!-- TÍTULO + CARRUSEL
+    ================================================== -->
+
+    <div class="container">
+      <header>
+        <h2>Datos de temperatura y humedad</h2>
+      </header>      
+    </div>
+
+    <div id="valor" align="center">
+        <svg viewBox="0 0 100 80" width="50%" xmlns="http://www.w3.org/2000/svg">
+            <!-- Rectángulo grande -->
+            <rect x="5" y="5" width="90" height="70"
+                   style="fill:blue; stroke:black; stroke-width:2; opacity:0.5" />
+            <!-- Rectángulos pequeños -->
+			<a href="area1.html"> 
+	            <rect x="12" y="42" width="35" height="30" class="svg" 
+    	              fill="green" /> Área 1
+			</a>
+ 	        <text x="14" y="47" font-family="Verdana" font-size="5"
+                  fill="white" stroke="black" stroke-width="0.1">
+               Área 1
+            </text>
+			<a href="area2.html"> 
+	            <rect x="12" y="10" width="35" height="30" class="svg" 
+    	              fill="green" /> Área 2
+			</a>
+ 	        <text x="14" y="15" font-family="Verdana" font-size="5"
+                  fill="white" stroke="black" stroke-width="0.1">
+               Área 2
+            </text>
+			<a href="area3.html"> 
+	            <rect x="55" y="10" width="35" height="30" class="svg" 
+	                  fill="green" /> Área 3
+			</a>
+            <text x="57" y="15" font-family="Verdana" font-size="5"
+               fill="white" stroke="black" stroke-width="0.1">
+               Área 3
+            </text>
+			<a href="area4.html"> 
+	            <rect x="55" y="42" width="35" height="30" class="svg" 
+    	              fill="green" /> Área 4
+			</a>
+            <text x="57" y="47" font-family="Verdana" font-size="5"
+               fill="white" stroke="black" stroke-width="0.1">
+               Área 4
+            </text>
+        </svg>
+    </div>
+
+    <!-- Own script -->	
+    <script type="text/javascript" src="js/svg.js"></script>
+</body>
+
+</html>
