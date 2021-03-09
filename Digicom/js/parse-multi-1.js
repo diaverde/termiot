@@ -18,11 +18,6 @@ jQuery.get("data2.csv", undefined, process_data, "text");
 jQuery.get("data3.csv", undefined, process_data, "text");
 jQuery.get("data4.csv", undefined, process_data, "text");
 jQuery.get("data5.csv", undefined, process_data, "text");
-jQuery.get("data6.csv", undefined, process_data, "text");
-jQuery.get("data7.csv", undefined, process_data, "text");
-jQuery.get("data8.csv", undefined, process_data, "text");
-jQuery.get("data9.csv", undefined, process_data, "text");
-jQuery.get("data10.csv", undefined, process_data, "text");
 
 // Función para procesar los datos
 // --------------------------------------------------------
@@ -488,7 +483,6 @@ $periodo.change(function() {
 	//document.getElementById('target').innerHTML = "Se va a usar: " + quantity + "<br>" + "Las lecturas son: " + q1+q2+q3+q4+q5+q6+q7+q8+q9+q10 + "antiguo: " + last_quantity;
 	updateDatasets(hum_chart);
 	updateDatasets(temp_chart);
-	updateDatasets(bat_chart);
 }).trigger('change'); // added trigger to calculate initial state
 //	*/
 
