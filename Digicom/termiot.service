@@ -1,0 +1,11 @@
+[Unit]
+Description=Service for humidity and temperature sensors
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python2 /home/termiot/termiot/Digicom/webserverFull.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
