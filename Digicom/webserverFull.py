@@ -121,7 +121,9 @@ class myHandler1(BaseHTTPRequestHandler):
 				filenow = 'data40.csv'
 			else:
 				filenow = 'trash.txt'
-			with open(filenow, 'a') as file:
+			#filepath = ''			
+			filepath = '/home/termiot/termiot/Digicom/'
+			with open(filepath + filenow, 'a') as file:
 			#with open("data.csv", 'a') as file:
 				file.write(date + "," + hour + "," + chain + "\n")
 			#content = self.OK_Page.format(chain=chain, date=date, hour=hour)
@@ -149,7 +151,8 @@ class myHandler2(BaseHTTPRequestHandler):
 	#Handler for the GET requests
 	def do_GET(self):
 		if self.path=="/":
-			self.path="/index.html"
+			#self.path="/index.html"
+			self.path="/home/termiot/termiot/Digicom/index.html"
 
 		try:
 			#Check the file extension required and
