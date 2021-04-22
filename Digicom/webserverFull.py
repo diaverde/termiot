@@ -150,9 +150,11 @@ class myHandler2(BaseHTTPRequestHandler):
 	
 	#Handler for the GET requests
 	def do_GET(self):
-		if self.path=="/":
-			#self.path="/index.html"
-			self.path="/home/termiot/termiot/Digicom/index.html"
+		if self.path == "/":
+			#self.path = "/index.html"
+			self.path = "/home/termiot/termiot/Digicom/index.html"
+		else :
+			self.path = "/home/termiot/termiot/Digicom" + self.path
 
 		try:
 			#Check the file extension required and
