@@ -1,11 +1,10 @@
 var full_data = [[],[],[],[],[],[],[],[],[],[]];
 
-var dark;
-var momis = [];
-var quantity1 = 96;					// Cantidad de mediciones a mostrar
-var quantity2 = 288;					// Cantidad de mediciones a mostrar
-var quantity3 = 672;					// Cantidad de mediciones a mostrar
-var quantity = quantity3;				// Cantidad de mediciones a mostrar - valor inicial es el máximo
+const hourlyFrequency = 4;					// Cantidad de mediciones por hora
+const quantity1 = hourlyFrequency*24;		// Cantidad de mediciones a mostrar (un día)
+const quantity2 = hourlyFrequency*48;		// Cantidad de mediciones a mostrar (tres días)
+const quantity3 = hourlyFrequency*168;		// Cantidad de mediciones a mostrar (siete días)
+var quantity = quantity1;					// Cantidad de mediciones a mostrar - valor inicial es el máximo
 var last_quantity;					// Almacena la última cantidad de datos antes de ser cambiada
 var q1 = 0, q2 =0, q3 = 0, q4 = 0, q5 = 0, q6 = 0, q7 = 0, q8 = 0, q9 = 0, q10 = 0;
 
