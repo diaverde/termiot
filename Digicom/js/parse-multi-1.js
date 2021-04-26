@@ -1,12 +1,14 @@
-var full_data = [[],[],[],[],[],[],[],[],[],[]];
+// Arreglo de datos por cada sensor
+var full_data = [[], [], [], [], [], [], [], [], [], []];
 
 const hourlyFrequency = 4;					// Cantidad de mediciones por hora
-const quantity1 = hourlyFrequency*24;		// Cantidad de mediciones a mostrar (un día)
-const quantity2 = hourlyFrequency*48;		// Cantidad de mediciones a mostrar (tres días)
-const quantity3 = hourlyFrequency*168;		// Cantidad de mediciones a mostrar (siete días)
+const quantity1 = hourlyFrequency * 24;		// Cantidad de mediciones a mostrar (un día)
+const quantity2 = hourlyFrequency * 48;		// Cantidad de mediciones a mostrar (tres días)
+const quantity3 = hourlyFrequency * 168;		// Cantidad de mediciones a mostrar (siete días)
 var quantity = quantity1;					// Cantidad de mediciones a mostrar - valor inicial es el máximo
-var last_quantity;					// Almacena la última cantidad de datos antes de ser cambiada
-var q1 = 0, q2 =0, q3 = 0, q4 = 0, q5 = 0, q6 = 0, q7 = 0, q8 = 0, q9 = 0, q10 = 0;
+var last_quantity;							// Almacena la última cantidad de datos antes de ser cambiada
+var q1 = 0, q2 = 0, q3 = 0, q4 = 0, q5 = 0,
+	q6 = 0, q7 = 0, q8 = 0, q9 = 0, q10 = 0;
 
 create_chart_hum();
 create_chart_temp();
@@ -25,7 +27,7 @@ function process_data(data) {
 	//console.log(cont);
 	fun = cont.split(',');
 	fun2 = cont.split('\n');
-	fun2.pop();				// delete last element which is empty
+	fun2.pop();							// Descartar último elemento (vacío)
 	//console.log(fun2);
 	var cant_csv = fun2.length;			// Contamos cuántas lecturas hay para el bicho correspondiente
 	//console.log(cant_csv);
@@ -36,11 +38,11 @@ function process_data(data) {
 		data_set_length = quantity;
 	}
 	// Se leen los datos más recientes según la cantidad indicada
-	for (var i = (cant_csv-data_set_length) ; i < cant_csv; i++) {
+	for (var i = (cant_csv - data_set_length); i < cant_csv; i++) {
 		temp = fun2[i].split(',');
 		//console.log(temp);
 		var bicho = 0;
-		switch (temp[2]){
+		switch (temp[2]) {
 			case "bicho1":
 				bicho = 0;
 				q1 = cant_csv;
@@ -82,24 +84,24 @@ function process_data(data) {
 				q10 = cant_csv;
 				break;
 			default:
-				bicho = -1;				
+				bicho = -1;
 				break;
-		}				
+		}
 		//console.log("El valor de bicho es: " + bicho);
-		if (bicho ==-1){
+		if (bicho == -1) {
 			break;
-		}else{
+		} else {
 			full_data[bicho].push(temp);
 			// Separación y tratamiento de los datos usando libería "Moments"
-			var date_moment = moment(temp[0] + "" + temp[1],"M/D/YY h:m:s");
-			//console.log("Va la coversión de momento: ");
+			let date_moment = moment(temp[0] + " " + temp[1], "M/D/YY h:m:s");
+			//console.log("Va la conversión de momento: ");
 			//console.log(date_moment);
 			//momis.push(date_moment);		
 			//Xaxis.push(date_moment);
 			//Yaxis1_1.push(Number(temp[3]));
-			addData(hum_chart,date_moment,Number(temp[3]),bicho);
+			addData(hum_chart, date_moment, Number(temp[3]), bicho);
 			//Yaxis1_2.push(Number(temp[4]));
-			addData(temp_chart,date_moment,Number(temp[4]),bicho);
+			addData(temp_chart, date_moment, Number(temp[4]), bicho);
 			//Yaxis1_3.push(Number(temp[5]));
 		}
 	}
@@ -112,13 +114,13 @@ function process_data(data) {
 
 // Funciones para crear cada tipo de gráfica: Humedad, Temperatura y Estado de batería
 // --------------------------------------------------------
-function create_chart_hum(){
-	
+function create_chart_hum() {
+
 	hum_chart = new Chart(document.getElementById("HChart"), {
 		type: 'line',
 		data: {
-		//labels: ['2:13:22', '2:13:30', '2:15:00', '2:16:30'],
-		//labels: [1, 2, 3, 4],
+			//labels: ['2:13:22', '2:13:30', '2:15:00', '2:16:30'],
+			//labels: [1, 2, 3, 4],
 			labels: [],
 			datasets: [{
 				data: [],
@@ -195,19 +197,19 @@ function create_chart_hum(){
 						suggestedMin: 5.0,
 						suggestedMax: 60.0
 					}
-				}]		
+				}]
 			}
 		}
 	});
 }
 
-function create_chart_temp(){
+function create_chart_temp() {
 
 	temp_chart = new Chart(document.getElementById("TChart"), {
 		type: 'line',
 		data: {
-		//labels: ['2:13:22', '2:13:30', '2:15:00', '2:16:30'],
-		//labels: [1, 2, 3, 4],
+			//labels: ['2:13:22', '2:13:30', '2:15:00', '2:16:30'],
+			//labels: [1, 2, 3, 4],
 			labels: [],
 			datasets: [{
 				data: [],
@@ -284,19 +286,19 @@ function create_chart_temp(){
 						suggestedMin: 0,
 						suggestedMax: 50.0
 					}
-				}]		
+				}]
 			}
 		}
 	});
 }
 
-function create_chart_bat(){
+function create_chart_bat() {
 
 	bat_chart = new Chart(document.getElementById("BChart"), {
 		type: 'line',
 		data: {
-		//labels: ['2:13:22', '2:13:30', '2:15:00', '2:16:30'],
-		//labels: [1, 2, 3, 4],
+			//labels: ['2:13:22', '2:13:30', '2:15:00', '2:16:30'],
+			//labels: [1, 2, 3, 4],
 			labels: [],
 			datasets: [{
 				data: [],
@@ -373,7 +375,7 @@ function create_chart_bat(){
 						suggestedMin: -2.0,
 						suggestedMax: 5.0
 					}
-				}]		
+				}]
 			}
 		}
 	});
@@ -398,32 +400,32 @@ function addData(chart, label, data, num) {
 	// label -> Valor del eje x
 	// data -> Valor del eje y
 	// num -> número del dataset donde se inserta el dato (corresponde al número de sensor)
-    /*
+	/*
 	if (num == 0) {
 		chart.data.labels.push(label);
 	}
 	*/
-	var nuevo_dato = {x: label, y: data};		
-    //chart.data.datasets.forEach((dataset) => {
-        //dataset.data.push(data);
-    //});
+	var nuevo_dato = { x: label, y: data };
+	//chart.data.datasets.forEach((dataset) => {
+	//dataset.data.push(data);
+	//});
 	chart.data.datasets[num].data.push(nuevo_dato);
-    chart.update();
+	chart.update();
 }
 //*
 function updateDatasets(chart) {
 	// Modificar número de datos de la gráfica
 	// chart -> Nombre de la gráfica
 	var difference = quantity - last_quantity;
-	for (var i = 0 ; i < full_data.length; i++) {		
+	for (var i = 0; i < full_data.length; i++) {
 		if (difference < 0) {
 			if (full_data[i].length > quantity) {
 				if (full_data[i].length > last_quantity) {
 					var vals_to_remove = Math.abs(difference);
-				} else { 
+				} else {
 					var vals_to_remove = full_data[i].length - quantity;
 				}
-				for (var j = 0 ; j < vals_to_remove; j++) {
+				for (var j = 0; j < vals_to_remove; j++) {
 					chart.data.datasets[i].data.shift();
 					//console.log(chart.data.datasets[i].data);
 				}
@@ -432,26 +434,26 @@ function updateDatasets(chart) {
 			if (full_data[i].length > last_quantity) {
 				if (full_data[i].length > quantity) {
 					var vals_to_add = difference;
-				} else { 
+				} else {
 					var vals_to_add = full_data[i].length - last_quantity;
 				}
-				for (var j = full_data[i].length - last_quantity - 1; j >= full_data[i].length - last_quantity - vals_to_add; j--) {					
-					var date_moment = moment(full_data[i][j][0] + "" + full_data[i][j][1],"M/D/YY h:m:s");
+				for (var j = full_data[i].length - last_quantity - 1; j >= full_data[i].length - last_quantity - vals_to_add; j--) {
+					var date_moment = moment(full_data[i][j][0] + "" + full_data[i][j][1], "M/D/YY h:m:s");
 					if (chart == hum_chart) {
 						var num = 3;
 					} else if (chart == temp_chart) {
 						var num = 4;
 					} else {
 						var num = 5;
-					}					
-					var nuevo_dato = {x: date_moment, y: Number(full_data[i][j][num])};
+					}
+					var nuevo_dato = { x: date_moment, y: Number(full_data[i][j][num]) };
 					chart.data.datasets[i].data.unshift(nuevo_dato);
 					//console.log(chart.data.datasets[i].data);
 				}
 			}
 		}
 	}
-    chart.update();
+	chart.update();
 }
 //*/
 /*
@@ -463,9 +465,9 @@ function update(chart){
 //*
 var $periodo = $('#periodo');
 
-$periodo.change(function() {
+$periodo.change(function () {
 	last_quantity = quantity;
-	switch ($periodo.val()){
+	switch ($periodo.val()) {
 		case "24 horas":
 			quantity = quantity1;
 			break;
@@ -500,34 +502,32 @@ function printPDF() {
 	var pdf = new jsPDF();
 	//var logo_s = 'data:image/jpeg;base64,'+ Base64.encode('\img\logo_shield.png');
 	//var logo_s = btoa('\img\logo_shield.png');
-	pdf.addImage(logo_s,'PNG',10,5);
-	pdf.addImage(logo_l,'PNG',100,5);
+	pdf.addImage(logo_s, 'PNG', 10, 5);
+	pdf.addImage(logo_l, 'PNG', 100, 5);
 	var line = 40;		// Valor inicial de línea en eje y
 	pdf.setFontSize(20);
-	pdf.text('Reporte de datos de humedad y temperatura',10,line);
+	pdf.text('Reporte de datos de humedad y temperatura', 10, line);
 	line += 10;
-	for (i=0; i<hum_chart.data.datasets.length; i++){
+	for (i = 0; i < hum_chart.data.datasets.length; i++) {
 		pdf.setFontSize(16);
-		pdf.text('Área ' + (i+1),10,line);
+		pdf.text('Área ' + (i + 1), 10, line);
 		line += 5;
 		pdf.setFontSize(12);
-		for (j=0; j<hum_chart.data.datasets[i].data.length; j++){
+		for (j = 0; j < hum_chart.data.datasets[i].data.length; j++) {
 			pdf.text(hum_chart.data.datasets[i].data[j]['x'].format("D MMM YY h:mm a") +
-			', Humedad: ' + hum_chart.data.datasets[i].data[j]['y'] +' %' + ', Temperatura: ' + temp_chart.data.datasets[i].data[j]['y'] +' °C',10,line);
-			if (line >= 280){
+				', Humedad: ' + hum_chart.data.datasets[i].data[j]['y'] + ' %' + ', Temperatura: ' + temp_chart.data.datasets[i].data[j]['y'] + ' °C', 10, line);
+			if (line >= 280) {
 				pdf.addPage();
 				line = 15;
 			}
 			line += 5;
 		}
-		line += 5;		
+		line += 5;
 	}
-	
-	//pdf.text('El valor que usted pagará es ' + doom.data.datasets[3].data[0]['x'],10,10);
+
 	//pdf.text('El valor que usted pagará es ' + doom.data.datasets[3].data[1]['y'],10,15);
-	if (pdf.output('dataurlnewwindow')){
+	if (pdf.output('dataurlnewwindow')) {
 		console.log('test');
 		console.log(pdf.getFontSize());
 	}
 }
-
