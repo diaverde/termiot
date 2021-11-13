@@ -1,18 +1,18 @@
-/* GLOBAL STYLES
--------------------------------------------------- */
-/* Padding below the footer and lighter body text */
+/* GLOBAL STYLES */
 
 body {
-  /*padding-top: 100px;*/
   padding-bottom: 40px;  
 }
+
 header {
-    margin: 10px;
-    padding: 20px 50px;
+  margin: 10px;
+  padding: 20px 50px;
 }
+
 header h1{
-    font-size: 4em;
+  font-size: 3em;
 }
+
 main {
     padding: 5px 10px;
     font-size: 1.2em;
@@ -23,6 +23,12 @@ main {
 }
 #tiempos {
 	visibility:visible;
+}
+
+.zonas {
+  display: block;
+  width: 70%;
+  margin: auto;
 }
 
 
@@ -140,27 +146,3 @@ main {
         background-color: #DDDDEE;
     }
 }
-
-@media print {
-    header {
-        padding: 0px;
-    }
-    header h1 {
-        font-size: 2em;
-    }
-    header h2{
-        display: none;
-    }
-    article {
-        box-shadow: none;
-    }    
-}
-
-/*
-@media only screen and (max-width: 768px) {
-	body {
-		padding-top: 500px;
-	  	padding-bottom: 40px;  
-	}
-}
-*/
