@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from threading import Thread
-from SocketServer import ThreadingMixIn
-from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
+from socketserver import ThreadingMixIn
+from http.server import BaseHTTPRequestHandler,HTTPServer
 from os import sep, curdir
 import time
 
@@ -151,10 +151,11 @@ class myHandler2(BaseHTTPRequestHandler):
 	#Handler for the GET requests
 	def do_GET(self):
 		if self.path == "/":
-			#self.path = "/index.html"
-			self.path = "/home/termiot/termiot/Digicom/index.html"
+			self.path = "/index.html"
+			#self.path = "/home/termiot/termiot/Digicom/index.html"
 		else :
-			self.path = "/home/termiot/termiot/Digicom" + self.path
+			#self.path = "/home/termiot/termiot/Digicom" + self.path
+			self.path = "/" + self.path
 
 		try:
 			#Check the file extension required and
@@ -190,7 +191,7 @@ class myHandler2(BaseHTTPRequestHandler):
 			if sendReply == True:
 				#Open the static file requested and send it
 				f = open(curdir + sep + self.path, 'rb')
-				print curdir + sep + self.path
+				print(curdir + sep + self.path)
 				self.send_response(200)				
 				#self.send_header("Content-Length",len(f.read()))
 				self.send_header('Content-type',mimetype)
@@ -212,12 +213,12 @@ def stop_it():
 			print("You pressed x")
 			break
 	keep_running = False
-	print "Leaving..."
+	print("Leaving...")
 	server1.shutdown()
 	server2.shutdown()
 	server1.socket.close()
 	server2.socket.close()
-	print "Chao"
+	print("Chao")
 
 
 #################################
@@ -230,12 +231,12 @@ try:
 	#Create a web server and define the handler to manage the
 	#incoming request
 	server1 = HTTPServer(('', PORT_NUMBER1), myHandler1)
-	print 'Started httpserver on port ' , PORT_NUMBER1
+	print('Started httpserver on port ' , PORT_NUMBER1)
 
 	server2 = HTTPServer(('', PORT_NUMBER2), myHandler2)
-	print 'Started httpserver on port ' , PORT_NUMBER2
+	print('Started httpserver on port ' , PORT_NUMBER2)
 
-	print "Press \'x\' to stop and leave"
+	print("Press \'x\' to stop and leave")
 
 	server1_thread = Thread(target=server1.serve_forever)
 	server2_thread = Thread(target=server2.serve_forever)
@@ -246,11 +247,11 @@ try:
 
 except KeyboardInterrupt:
 	try:	
-		print '^C received, shutting down the web server'
+		print('^C received, shutting down the web server')
 		server1.socket.close()
 		server2.socket.close()
 		server1.shutdown()
 		server2.shutdown()
 	except Exception:
 		logging.exception("Can't shutdown %r" % (server1,)) # log exception here
-		print "useless"
+		print("useless")
